@@ -35,11 +35,32 @@ const db = new sqlite3.Database('sistemadechamados.db', (err) => {
 });
 
 app.get('/cadastrar', (req, res) => {
-    res.render('servidor')
+    res.render('cadastrar')
 });
 
-app.get('/chamado',(req,res) => {
 
+app.post('/cadastrar', (req, res) => {
+    const { nome, titulo, email, canal, descricao, prioridade, destino, status, pendencia} = req.body;
+    const query = `INSERT INTO chamados(nome, titulo, email, canal, descricao, prioridade, destino, status, pendencia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`; 
+    db.run(query,[nome, titulo, email, canal, descricao, prioridade, destino, status, pendencia],(err,result) => {
+        if(err){
+            console.error(err);
+            return res.status(500).send("Erro na catalogação de jogo");
+        }
+        res.redirect('/');
+    });
+});
+
+app.get('/',(req,res) => {
+   const query = `SELECT * from chamados`; 
+    
+    db.all(query,[], (err,rows) =>{
+        if(err){
+            console.error(err);
+            return res.status(500).send("Não tem nenhum chamado catalogado");
+        }
+        res.render("index",{chamados: rows});
+    }); 
 });
 
 // O servidor ficará ouvindo a porta 3000

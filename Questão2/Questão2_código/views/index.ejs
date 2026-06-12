@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Cadastro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+<%- include('partials/header') %>
+<h2 class="mb-4 mx-auto">Chamados Cadastrados</h2>
+<%  if (chamados.length == 0) { %> 
+        <div class="alert alert-info text-center"> 
+            Nenhum chamado cadastrado. 
+        </div> 
+<%  } else { %>
+        <table class="table table-striped-columns">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Prioridade</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Destino</th>
+                    <th scope="col">Pendência</th>
+                </tr>
+            </thead>          
+            <tbody>
+                <% chamados.forEach(chamado => { %>
+                    <tr>
+                        <td><%= chamado.id %></td>
+                        <td><%= chamado.nome %></td>
+                        <td><%= chamado.titulo %></td>
+                        <td><%= chamado.prioridade %></td>
+                        <td><%= chamado.status %></td>
+                        <td><%= chamado.destino %></td>
+                        <td>
+                            <% if(chamado.pendencia){  %>
+                                Sim
+                        <%  } else { %>
+                                Não
+                        <%  } %>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+<%  } %>
+<%- include('partials/footer') %>
+</body>
+</html>
