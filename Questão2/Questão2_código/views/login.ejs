@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Cadastro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+<%- include('partials/header') %>
+
+<form action="/" class="mt-4">
+    <div class="col-md-3 mx-auto">
+        <div class="mb-3">
+            <input type="text" name="Nome" class="form-control" placeholder = "Digite o seu nome" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" name="Email" class="form-control" placeholder = "Digite o seu email" required>
+        </div>
+        <div class="mb-3">
+            <select name="Canal" class="form-select" required>
+            <option value="" selected disabled>Selecione o canal</option>
+                <option value="Whatsapp">Whatsapp</option>
+                <option value="Email">Email</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <input type="text" name="Titulo" class="form-control" placeholder = "Digite o titulo" required>
+        </div>
+        <div class="mb-3">
+            <textarea type="text" name="Descricao" class="form-control" placeholder = "Digite a descrição" rows="4" style="resize: none;"></textarea>
+        </div>
+        <div class="mb-3">
+            <select name="Prioridade" class="form-select" required>
+                <option value="" selected disabled>Selecione a prioridade</option>
+                <option value="Alta">Alta</option>
+                <option value="Media">Média</option>
+                <option value="Baixa">Baixa</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <select name="Destino" class="form-select" required>
+                <option value="" selected disabled>Selecione o destino</option>
+                <option value="Desenvolvedores">Desenvolvedores</option>
+                <option value="Investidores">Investidores</option>
+                <option value="Gerente">Gerente</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <select name="Status" class="form-select" required>
+                <option value="" selected disabled>Selecione o status</option>
+                <option value="Aberto">Aberto</option>
+                <option value="Em andamento">Em andamento</option>
+                <option value="Urgente">Urgente</option>
+                <option value="Fechado">Fechado</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <input class="form-check-input" type="checkbox" value="Pendencia" id="Pendencia">
+            <label class="form-check-label" for="Pendencia">Possui Pendência?</label>                
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Salvar</button>
+    </div>
+</form>
+<%- include('partials/footer') %>
+</body>
+</html>
+
